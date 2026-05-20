@@ -205,8 +205,8 @@ goto ContinueOfficeAct
 :WrongOfficeVersion
 echo.
 echo %RED%=================================================================================%RESET%
-echo %RED%VEZGZETES HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
-echo %RED%Valoszinuleg NEM ezt az Office verziot telepitetted a gepre, vagy masik kiadas. %RESET%
+echo %RED%HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
+echo %RED%Valoszinuleg NEM ezt az Office verziot telepitetted a gepre. %RESET%
 echo %RED%Kerlek, ellenorizd a gepen levo Office verziojat, es probald ujra a helyes menuponttal.%RESET%
 echo %RED%=================================================================================%RESET%
 del "%temp%\kms_off_inpkey_log.txt" >nul 2>&1
