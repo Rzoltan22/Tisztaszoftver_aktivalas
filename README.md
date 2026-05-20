@@ -1,7 +1,8 @@
 # Tisztaszoftver KMS Aktiváló Script (All-in-One)
 
 Indítás:
-irm "https://raw.githubusercontent.com/Rzoltan22/Tisztaszoftver_aktivalas/refs/heads/main/Tisztaszoftver_aktiv%C3%A1l%C3%A1s.cmd" -OutFile "$env:TEMP\aktivator.cmd"; & "$env:TEMP\aktivator.cmd"
+
+'''irm "https://raw.githubusercontent.com/Rzoltan22/Tisztaszoftver_aktivalas/refs/heads/main/Tisztaszoftver_aktiv%C3%A1l%C3%A1s.cmd" -OutFile "$env:TEMP\aktivator.cmd"; & "$env:TEMP\aktivator.cmd"'''
 
 
 Ez egy menüvezérelt, automatizált kötegeltfájl (`.bat`) Windows operációs rendszerek és Microsoft Office irodai csomagok legális, intézményi aktiválásához a központi `kms.edu.hu` szerveren keresztül.
