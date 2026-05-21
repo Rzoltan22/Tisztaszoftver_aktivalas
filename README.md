@@ -50,7 +50,7 @@ A script több szintű automatizálást és hibakezelést tartalmaz a háttérbe
 A script használata rendkívül egyszerű és mindössze néhány lépésből áll:
 
 1.  **Fájl futtatása:** Vagy letöltöd a .cmd fájlt és simán futtatod vagy a fent található paracsal powershell-ből indítható
-2.  **Menüpont kiválasztása:** A megjelenő listából válaszd ki a számodra szükséges opciót (például ha Windows 11 Pro-t szeretnél aktiválni, üsd be az `1`-es számot, ha 64 bites Office 2019-et, akkor a `8`-ast).
+2.  **Menüpont kiválasztása:** A megjelenő listából válaszd ki a számodra szükséges opciót (például ha Windows 11 Pro-t szeretnél aktiválni, üsd be az `1`-es számot, ha Office 2019-et, akkor a `7`-est).
 3.  **Indítás:** Nyomj egy `Enter` gombot.
 4.  **Folyamat megvárása:** * A program eltávolítja a régi kulcsmaradványokat, regisztrálja az újat, majd megkísérli elérni a szervert.
       Ha a szerver túlterhelt, látni fogod a piros figyelmeztetést és a visszaszámlálót. **Ne zárd be az ablakot**, a script magától újra fog próbálkozni.
