@@ -119,7 +119,7 @@ goto MainMenu
 
 
 :: =================================================================================
-:: HALOZAT ELLENORZES FUGGVENY (Golyóálló verzió)
+:: HALOZAT ELLENORZES FUGGVENY
 :: =================================================================================
 :CheckNetwork
 echo.
@@ -160,7 +160,7 @@ exit /b 1
 :IPWrong
 echo.
 echo %RED%=================================================================================%RESET%
-echo %RED%VEGZETES HIBA: Nem megfelelo halozat!                                            %RESET%
+echo %RED%HIBA: Nem megfelelo halozat!                                            %RESET%
 echo %RED%A jelenlegi publikus IP cim (%PUB_IP%) nincs a 195.199.0.0/16 tartomanyban.      %RESET%
 echo %RED%Az aktivalas kizarolag a magyar kozoktatasi halozatbol (NIIF) mukodik!           %RESET%
 echo %RED%=================================================================================%RESET%
@@ -267,7 +267,7 @@ goto ContinueOfficeAct
 :WrongOfficeVersion
 echo.
 echo %RED%=================================================================================%RESET%
-echo %RED%VEZGZETES HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
+echo %RED%HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
 echo %RED%Valoszinuleg NEM ezt az Office verziot telepitetted a gepre, vagy masik kiadas. %RESET%
 echo %RED%Kerlek, ellenorizd a gepen levo Office verziojat, es probald ujra a helyes menuponttal.%RESET%
 echo %RED%=================================================================================%RESET%
