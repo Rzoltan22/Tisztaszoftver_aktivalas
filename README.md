@@ -6,6 +6,14 @@ Indítás (PS):
 irm "https://raw.githubusercontent.com/Rzoltan22/Tisztaszoftver_aktivalas/refs/heads/main/Tisztaszoftver_aktivalas.cmd" -OutFile "$env:TEMP\aktivator.cmd"; & "$env:TEMP\aktivator.cmd"
 ```
 
+Rövidített link:
+
+```
+irm https://tinyurl.com/tisztaszoftver-aktivalas -OutFile "$env:TEMP\aktivator.cmd"; & "$env:TEMP\aktivator.cmd"
+```
+
+
+
 Ez egy menüvezérelt, automatizált program Windows operációs rendszerek és Microsoft Office irodai csomagok legális, intézményi aktiválásához a központi `kms.edu.hu` szerveren keresztül.
 
 ## 📋 Mit csinál?
