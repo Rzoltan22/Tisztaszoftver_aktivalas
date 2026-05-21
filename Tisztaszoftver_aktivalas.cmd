@@ -107,7 +107,7 @@ if "%choice%"=="11" (
 )
 if "%choice%"=="0" exit
 
-:: Helytelen opcio kezelese (Szelektiven Piros szoveg)
+:: Helytelen opcio kezelese
 echo.
 echo %RED%=================================================================================%RESET%
 echo %RED%HIBA: Helytelen opciot valasztottal! Kerlek valassz a listabol [0-11].          %RESET%
@@ -117,12 +117,70 @@ echo Nyomj meg egy gombot az ujraprobalkozashoz...
 pause >nul
 goto MainMenu
 
+
+:: =================================================================================
+:: HALOZAT ELLENORZES FUGGVENY (Golyóálló verzió)
+:: =================================================================================
+:CheckNetwork
+echo.
+echo Halozat IP cimenek ellenorzese...
+set "PUB_IP="
+
+REM PowerShell futtatasa es kimenet ideiglenes fajlba irasa az osszeomlas elkeruleseert
+powershell -NoProfile -ExecutionPolicy Bypass -Command "(Invoke-RestMethod -Uri 'https://api.ipify.org' -UseBasicParsing -TimeoutSec 5).Trim()" > "%temp%\pub_ip.txt" 2>nul
+
+REM Eredmeny beolvasasa a fajlbol
+if exist "%temp%\pub_ip.txt" (
+    set /p PUB_IP=<"%temp%\pub_ip.txt"
+    del "%temp%\pub_ip.txt" >nul 2>&1
+)
+
+REM Ha ures a valtozo (nincs net, vagy hiba tortent)
+if "%PUB_IP%"=="" goto IPError
+
+echo Publikus IP cim: %PUB_IP%
+echo %PUB_IP% | findstr /b "195.199." >nul
+if %errorlevel% neq 0 goto IPWrong
+
+echo %GREEN%A halozat megfelelo (195.199.x.x tartomany). Folytatas...%RESET%
+echo.
+exit /b 0
+
+:IPError
+echo.
+echo %RED%=================================================================================%RESET%
+echo %RED%HIBA: Nem sikerult lekerdezni a publikus IP cimet!                               %RESET%
+echo %RED%Ellenorizd az internetkapcsolatot (vagy a tuzfal blokkolja a lekerezest).        %RESET%
+echo %RED%=================================================================================%RESET%
+echo.
+echo Nyomj meg egy gombot a fomenube valo visszatereshez!
+pause >nul
+exit /b 1
+
+:IPWrong
+echo.
+echo %RED%=================================================================================%RESET%
+echo %RED%VEGZETES HIBA: Nem megfelelo halozat!                                            %RESET%
+echo %RED%A jelenlegi publikus IP cim (%PUB_IP%) nincs a 195.199.0.0/16 tartomanyban.      %RESET%
+echo %RED%Az aktivalas kizarolag a magyar kozoktatasi halozatbol (NIIF) mukodik!           %RESET%
+echo %RED%=================================================================================%RESET%
+echo.
+echo Nyomj meg egy gombot a fomenube valo visszatereshez!
+pause >nul
+exit /b 1
+:: =================================================================================
+
+
 :WinActivate
 cls
 echo %GREEN%=================================================================================%RESET%
 echo %GREEN%Windows KMS Aktivalas folyamatban...                                         %RESET%
 echo %GREEN%=================================================================================%RESET%
-echo.
+
+:: --- IP ELLENORZES MEGHIVASA (WINDOWS) ---
+call :CheckNetwork
+if %errorlevel% neq 0 goto MainMenu
+
 echo Regi licenckulcs eltavolitasa es registry tisztitasa...
 cscript C:\Windows\System32\slmgr.vbs /upk //nologo >nul 2>&1
 cscript C:\Windows\System32\slmgr.vbs /cpky //nologo >nul 2>&1
@@ -187,6 +245,10 @@ if not exist "%OSPP_PATH%" (
     goto MainMenu
 )
 
+:: --- IP ELLENORZES MEGHIVASA (OFFICE) ---
+call :CheckNetwork
+if %errorlevel% neq 0 goto MainMenu
+
 echo Uj kulcs telepitese (%O_GVLK%)...
 cscript "%OSPP_PATH%" /inpkey:%O_GVLK% //nologo > "%temp%\kms_off_inpkey_log.txt"
 type "%temp%\kms_off_inpkey_log.txt"
@@ -205,8 +267,8 @@ goto ContinueOfficeAct
 :WrongOfficeVersion
 echo.
 echo %RED%=================================================================================%RESET%
-echo %RED%HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
-echo %RED%Valoszinuleg NEM ezt az Office verziot telepitetted a gepre. %RESET%
+echo %RED%VEZGZETES HIBA: A termekkulcsot nem fogadta el a rendszer (SKU not found)!       %RESET%
+echo %RED%Valoszinuleg NEM ezt az Office verziot telepitetted a gepre, vagy masik kiadas. %RESET%
 echo %RED%Kerlek, ellenorizd a gepen levo Office verziojat, es probald ujra a helyes menuponttal.%RESET%
 echo %RED%=================================================================================%RESET%
 del "%temp%\kms_off_inpkey_log.txt" >nul 2>&1
