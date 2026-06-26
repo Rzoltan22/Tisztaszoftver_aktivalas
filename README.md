@@ -24,6 +24,8 @@ A script egy interaktív felületen teszi lehetővé a különböző Microsoft t
 * **Windows:**
     * Windows 10 / 11 Pro
     * Windows 10 / 11 Enterprise
+    * Windows 10 / 11 Enterprise LTSC
+    * Windows 10 / 11 IOT Enterprise LTSC
     * Windows Server 2016 Standard
     * Windows Server 2019 Standard
     * Windows Server 2022 Standard
