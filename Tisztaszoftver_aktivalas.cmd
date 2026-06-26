@@ -34,14 +34,16 @@ echo.
 echo     Windows aktivalas:
 echo     [1] Windows 10/11 Pro
 echo     [2] Windows 10/11 Enterprise
-echo     [3] Windows Server 2016 Standard
-echo     [4] Windows Server 2019 Standard
-echo     [5] Windows Server 2022 Standard
+echo     [3] Windows 10/11 Enterprise LTSC
+echo     [4] Windows 10/11 IOT Enterprise LTSC
+echo     [5] Windows Server 2016 Standard
+echo     [6] Windows Server 2019 Standard
+echo     [7] Windows Server 2022 Standard
 echo.
 echo     Office aktivalas:
-echo     [6] Office 2016 (64-bit / 32-bit)
-echo     [7] Office 2019 (64-bit / 32-bit)
-echo     [8] Office 2021 (64-bit / 32-bit)
+echo     [8] Office 2016 (64-bit / 32-bit)
+echo     [9] Office 2019 (64-bit / 32-bit)
+echo     [10] Office 2021 (64-bit / 32-bit)
 echo.
 echo =================================================================================
 echo     [0] Kilepes
@@ -62,32 +64,44 @@ if "%choice%"=="2" (
     goto WinActivate
 )
 if "%choice%"=="3" (
+    set "GVLK=M7XTQ-FN8P6-TTKYV-9D4CC-J462D"
+    set "EXPECTED_SERVER=0"
+    set "EXPECTED_SERVER_YEAR="
+    goto WinActivate
+)
+if "%choice%"=="4" (
+    set "GVLK=KBN8V-HFGQ4-MGXVD-347P6-PDQGT"
+    set "EXPECTED_SERVER=0"
+    set "EXPECTED_SERVER_YEAR="
+    goto WinActivate
+)
+if "%choice%"=="5" (
     set "GVLK=WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY"
     set "EXPECTED_SERVER=1"
     set "EXPECTED_SERVER_YEAR=2016"
     goto WinActivate
 )
-if "%choice%"=="4" (
+if "%choice%"=="6" (
     set "GVLK=N69G4-B89J2-4G8F4-WWYCC-J464C"
     set "EXPECTED_SERVER=1"
     set "EXPECTED_SERVER_YEAR=2019"
     goto WinActivate
 )
-if "%choice%"=="5" (
+if "%choice%"=="7" (
     set "GVLK=VDYBN-27WPP-V4HQT-9VMD4-VMK7H"
     set "EXPECTED_SERVER=1"
     set "EXPECTED_SERVER_YEAR=2022"
     goto WinActivate
 )
-if "%choice%"=="6" (
+if "%choice%"=="8" (
     set "O_GVLK=XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99"
     goto OfficeActivate
 )
-if "%choice%"=="7" (
+if "%choice%"=="9" (
     set "O_GVLK=NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP"
     goto OfficeActivate
 )
-if "%choice%"=="8" (
+if "%choice%"=="10" (
     set "O_GVLK=FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH"
     goto OfficeActivate
 )
@@ -96,7 +110,7 @@ if "%choice%"=="0" exit
 :: Helytelen opcio kezelese
 echo.
 echo %RED%=================================================================================%RESET%
-echo %RED%HIBA: Helytelen opciot valasztottal! Kerlek valassz a listabol [0-8].           %RESET%
+echo %RED%HIBA: Helytelen opciot valasztottal! Kerlek valassz a listabol [0-11].           %RESET%
 echo %RED%=================================================================================%RESET%
 echo.
 pause
